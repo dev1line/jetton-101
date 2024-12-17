@@ -1,0 +1,11 @@
+{
+    "name": "Mysterious Hands Collection",
+    "description": "Collection of NFTs 100% on-chain. That will be used to create a unique experience. Airdrop for the first 1000 holders.",
+    "image": "https://maroon-wasteful-cow-737.mypinata.cloud/ipfs/QmNYGu15rBUpaZ9E8Je7YZjRBbM7rPXDDApscC9Pi636Rh",
+    "cover_image": "https://maroon-wasteful-cow-737.mypinata.cloud/ipfs/QmNYGu15rBUpaZ9E8Je7YZjRBbM7rPXDDApscC9Pi636Rh",
+    "royalty_params": {
+        "royalty_factor": 50,
+        "royalty_base": 1000,
+        "royalty_address": "0QCYXNumle2Au-ImtXMrGrALjcnd-SRunrX3XrxlvQb4FLkX"
+    }
+}

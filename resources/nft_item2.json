@@ -1,0 +1,16 @@
+{
+    "name": "#002",
+    "description": "This is the second NFT of the collection. It is a unique piece that will be used to create a unique experience. Airdrop for the first 1000 holders.",
+    "image_path": "turtle.png",
+    "image": "https://turtlpass.com/img/blockchain-seeds.png",
+    "attributes": [
+        {
+            "trait_type": "Rarity",
+            "value": "9 of 10"
+        },
+        {
+            "trait_type": "Price",
+            "value": "1000000USD"
+        }
+    ]
+}
