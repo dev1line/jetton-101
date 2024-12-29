@@ -21,10 +21,10 @@ import {
     internal,
 } from '@ton/sandbox';
 import '@ton/test-utils';
-import { jettonContentToCell, JettonMinter } from '../wrappers/JettonMinter';
-import { JettonWallet, jettonWalletConfigToCell } from '../wrappers/JettonWallet';
+import { jettonContentToCell, JettonMinter } from '../../wrappers/JettonMinter';
+import { JettonWallet, jettonWalletConfigToCell } from '../../wrappers/JettonWallet';
 import { buff2bigint, getRandomInt, getRandomTon, randomAddress, testJettonInternalTransfer } from './utils';
-import { Errors, Op } from '../wrappers/JettonConstants';
+import { Errors, Op } from '../../wrappers/JettonConstants';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 import {
@@ -474,7 +474,7 @@ describe('Claim tests', () => {
         const testTree = beginCell().storeDictDirect(airdropData).endCell();
         */
 
-        const proofString = await readFile(join('sandbox_tests', 'proof'), { encoding: 'utf8' });
+        const proofString = await readFile(join('tests/specs', 'proof'), { encoding: 'utf8' });
         const parts = proofString.split(',');
         const testAddress = Address.parse(parts[0]);
         const newProof = Cell.fromBase64(parts[1]);

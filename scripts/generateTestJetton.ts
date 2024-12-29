@@ -18,10 +18,10 @@ import { WalletContractV4, WalletContractV5R1 } from '@ton/ton';
 import { mnemonicNew, mnemonicToPrivateKey } from '@ton/crypto';
 
 import '@ton/test-utils';
-import { jettonContentToCell, JettonMinter } from '../wrappers/mintless/JettonMinter';
-import { JettonWallet, jettonWalletConfigToCell } from '../wrappers/mintless/JettonWallet';
-import { buff2bigint } from '../tests/mintless/utils';
-import { Errors, Op } from '../wrappers/mintless/JettonConstants';
+import { jettonContentToCell, JettonMinter } from '../wrappers/JettonMinter';
+import { JettonWallet, jettonWalletConfigToCell } from '../wrappers/JettonWallet';
+import { buff2bigint } from '../tests/specs/utils';
+import { Errors, Op } from '../wrappers/JettonConstants';
 
 import { hex as jettonMinterHex } from '../build/jetton-minter.compiled.json';
 import { hex as jettonWalletHex } from '../build/jetton-wallet.compiled.json';
@@ -270,7 +270,7 @@ export async function run(provider: NetworkProvider) {
     const adminAddress = await promptUserFriendlyAddress(
         'Enter the address of the jetton owner (admin):',
         ui,
-        isTestnet
+        isTestnet,
     );
 
     let data = await generateWalletsWithAirdropData();
@@ -288,7 +288,7 @@ export async function run(provider: NetworkProvider) {
             supply: data.totalSupply,
             transfer_admin: null,
         },
-        minter_code
+        minter_code,
     );
     let minter = provider.open(minterContract);
     await minter.sendDeploy(provider.sender(), toNano('0.05'));
@@ -337,7 +337,7 @@ export async function run(provider: NetworkProvider) {
             merkleRoot: merkleRoot,
             salt: await minter.getWalletSalt(wallet.address),
         },
-        wallet_code
+        wallet_code,
     );
     let jettonWallet = provider.open(jettonWalletContract);
 
@@ -352,6 +352,6 @@ export async function run(provider: NetworkProvider) {
         wallet2.address,
         wallet.address,
         claimPayload,
-        toNano('0.05')
+        toNano('0.05'),
     );
 }

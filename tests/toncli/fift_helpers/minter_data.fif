@@ -1,0 +1,34 @@
+"TonUtil.fif" include
+"Asm.fif" include
+
+
+"EQDlT07NpSh0uj-aSBkF2TRxOqR2nw0ErOQsA6TYakr1-FxP" constant owner_address // Specify your own
+"EQDlT07NpSh0uj-aSBkF2TRxOqR2nw0ErOQsA6TYakr1-FxP" constant next_admin_address // Specify next admin
+"https://raw.githubusercontent.com/Trinketer22/token-contract/main/ft/web-example/test_jetton.json" constant jetton_meta // Specify your own
+"build/jetton-wallet.fif" constant wallet_code_path
+1000000000 100 * constant jetton_supply // Starting jetton supply
+
+<b
+  1 8 u, // Off-chain token
+  jetton_meta
+  $>B B,
+b>
+
+
+owner_address
+$>smca 0= abort"Specify valid admin addr"
+drop // Drop flags
+
+next_admin_address
+$>smca 0= abort"Specify valid admin next admin addr"
+drop // Drop flags
+
+<b
+  jetton_supply Gram, // total supply
+  -rot Addr,  //  admin address
+  -rot Addr,  //  next admin address
+  wallet_code_path include // Loading jetton code
+  over tuple? { nip } if // In testing mode (asm-mode 3) include returns ( cell, tuple ) we don't want tuple in the cell
+  ref,   //   code cell
+  swap ref,   //   metadata_url cell
+b>

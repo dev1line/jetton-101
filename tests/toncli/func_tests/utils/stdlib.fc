@@ -1,0 +1,3 @@
+int equal_slices (slice a, slice b) asm "SDEQ";
+int tuple_length( tuple t ) asm "TLEN";
+int now() asm "NOW";

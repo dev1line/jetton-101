@@ -21,7 +21,7 @@ import { mnemonicNew, mnemonicToPrivateKey } from '@ton/crypto';
 import '@ton/test-utils';
 import { jettonContentToCell, JettonMinter } from '../wrappers/JettonMinter';
 import { JettonWallet, jettonWalletConfigToCell } from '../wrappers/JettonWallet';
-import { buff2bigint } from '../tests/utils';
+import { buff2bigint } from '../tests/specs/utils';
 import { Errors, Op } from '../wrappers/JettonConstants';
 
 declare module 'express';

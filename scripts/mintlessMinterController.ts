@@ -1,4 +1,4 @@
-import { checkJettonMinter } from '../wrappers/mintless/JettonMinterChecker';
+import { checkJettonMinter } from '../wrappers/JettonMinterChecker';
 import { Address, beginCell, Cell, fromNano, OpenedContract, toNano } from '@ton/core';
 import { compile, NetworkProvider, UIProvider } from '@ton/blueprint';
 import {
@@ -6,7 +6,7 @@ import {
     jettonMinterConfigCellToConfig,
     JettonMinterConfigFull,
     jettonMinterConfigFullToCell,
-} from '../wrappers/mintless/JettonMinter';
+} from '../wrappers/JettonMinter';
 import {
     promptBool,
     promptAmount,
@@ -188,7 +188,7 @@ const updateData = async (oldData: Cell, ui: UIProvider) => {
             `Current merkle root:${curConfig.merkle_root.toString(16)}\nWant to change?`,
             ['Yes', 'No'],
             ui,
-            true
+            true,
         );
         if (updateMerkle) {
             newConfig.merkle_root = await promptBigInt('Enter new merkle root in hex or numeric form:', ui);
@@ -198,14 +198,14 @@ const updateData = async (oldData: Cell, ui: UIProvider) => {
             `Current supply:${fromNano(curConfig.supply)}\nWant to change?`,
             ['Yes', 'No'],
             ui,
-            true
+            true,
         );
         if (updateSupply) newConfig.supply = await promptAmount('Enter new supply amount:', decimals, ui);
         const updateAdmin = await promptBool(
             `Current admin:${curConfig.admin}\nWant to change?`,
             ['Yes', 'No'],
             ui,
-            true
+            true,
         );
         if (updateAdmin) newConfig.admin = await promptAddress('Enter new admin address:', ui);
         if (newConfig.transfer_admin !== null) {
@@ -213,7 +213,7 @@ const updateData = async (oldData: Cell, ui: UIProvider) => {
                 !(await promptBool(
                     `Currently admin rights can be transfered to:${curConfig.transfer_admin}\nPreserve?`,
                     ['Yes', 'No'],
-                    ui
+                    ui,
                 ))
             ) {
                 // Drop the transfer rights
@@ -226,7 +226,7 @@ const updateData = async (oldData: Cell, ui: UIProvider) => {
             updateWallet = await promptBool(
                 'Update wallet code from jetton-wallet.fc?\n(CAUTION:This will break compatability with deployed wallets)',
                 ['Yes', 'No'],
-                ui
+                ui,
             );
             if (updateWallet) {
                 newConfig.wallet_code = walletCode;
@@ -242,10 +242,10 @@ const updateData = async (oldData: Cell, ui: UIProvider) => {
                     wallet_code: updateWallet ? 'updated' : 'preserved',
                 },
                 null,
-                2
+                2,
             )}\nIs it okay?`,
             ['Yes', 'No'],
-            ui
+            ui,
         ));
     } while (retry);
     return jettonMinterConfigFullToCell(newConfig);
@@ -255,7 +255,7 @@ const upgradeAction = async (provider: NetworkProvider, ui: UIProvider) => {
         `Would you like to upgrade code?\nSource from jetton-minter.fc will be used.`,
         ['Yes', 'No'],
         ui,
-        true
+        true,
     );
     let upgradeData = await promptBool(`Would you like to upgrade data?`, ['Yes', 'No'], ui, true);
 
@@ -270,7 +270,7 @@ const upgradeAction = async (provider: NetworkProvider, ui: UIProvider) => {
             provider,
             jettonMinterContract.address,
             contractState.last!.lt.toString(),
-            10
+            10,
         );
         if (gotTrans) {
             ui.write('Contract upgraded successfully!');
@@ -298,7 +298,7 @@ const updateMerkleRoot = async (provider: NetworkProvider, ui: UIProvider) => {
         provider,
         jettonMinterContract.address,
         contractState.last!.lt.toString(),
-        10
+        10,
     );
     if (gotTrans) {
         ui.write('Contract upgraded successfully!');
@@ -352,7 +352,7 @@ export async function run(provider: NetworkProvider) {
                 provider,
                 ui,
                 provider.network() == 'testnet',
-                true
+                true,
             );
             jettonMinterContract = verifyRes.jettonMinterContract;
             adminAddress = verifyRes.adminAddress;

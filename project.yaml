@@ -1,0 +1,26 @@
+jetton-minter:
+    data: tests/toncli/fift_helpers/minter_data.fif
+    func:
+        - contracts/jetton-minter.fc
+        - contracts/imports/stdlib.fc
+        - contracts/imports/gas.fc
+        - contracts/imports/jetton-utils.fc
+        - contracts/imports/op-codes.fc
+        - contracts/imports/proofs.fc
+        - contracts/imports/workchain.fc
+    tests:
+        - tests/toncli/func_tests/minter-tests.fc
+        # - tests/toncli/func_tests/minter-tests-int.fc
+# jetton-wallet:
+#     data: tests/toncli/fift_helpers//wallet_data.fif
+#     func:
+#         - contracts/jetton-wallet.fc
+#         - contracts/imports/stdlib.fc
+#         - contracts/imports/gas.fc
+#         - contracts/imports/jetton-utils.fc
+#         - contracts/imports/op-codes.fc
+#         - contracts/imports/proofs.fc
+#         - contracts/imports/workchain.fc
+#     tests:
+#         - tests/toncli/func_tests/wallet-tests.fc
+#         - tests/toncli/func_tests/wallet-tests-int.fc

@@ -1,6 +1,6 @@
 import { compile, NetworkProvider } from '@ton/blueprint';
 import { jettonWalletCodeFromLibrary, promptUserFriendlyAddress } from '../wrappers/ui-utils';
-import { checkJettonMinter } from '../wrappers/mintless/JettonMinterChecker';
+import { checkJettonMinter } from '../wrappers/JettonMinterChecker';
 import { Cell } from '@ton/core';
 import { hex as jettonMinterHex } from '../build/jetton-minter.compiled.json';
 import { hex as jettonWalletHex } from '../build/jetton-wallet.compiled.json';
@@ -24,7 +24,7 @@ export async function run(provider: NetworkProvider) {
     const jettonMinterAddress = await promptUserFriendlyAddress(
         'Enter the address of the jetton minter',
         ui,
-        isTestnet
+        isTestnet,
     );
 
     try {
@@ -35,7 +35,7 @@ export async function run(provider: NetworkProvider) {
             provider,
             ui,
             isTestnet,
-            false
+            false,
         );
     } catch (e: any) {
         ui.write(e.message);

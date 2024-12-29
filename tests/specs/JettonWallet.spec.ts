@@ -19,13 +19,13 @@ import {
     fromNano,
     DictionaryValue,
 } from '@ton/core';
-import { JettonWallet } from '../wrappers/JettonWallet';
-import { jettonContentToCell, JettonMinter, JettonMinterContent } from '../wrappers/JettonMinter';
+import { JettonWallet } from '../../wrappers/JettonWallet';
+import { jettonContentToCell, JettonMinter, JettonMinterContent } from '../../wrappers/JettonMinter';
 import '@ton/test-utils';
 import { findTransactionRequired } from '@ton/test-utils';
 import { compile } from '@ton/blueprint';
 import { randomAddress, getRandomTon, differentAddress, getRandomInt } from './utils';
-import { Op, Errors } from '../wrappers/JettonConstants';
+import { Op, Errors } from '../../wrappers/JettonConstants';
 import {
     calcStorageFee,
     collectCellStats,
@@ -60,8 +60,8 @@ import { sha256 } from '@ton/crypto';
 
 //jetton params
 
-import { hex as jettonMinterHex } from '../build/jetton-minter.compiled.json';
-import { hex as jettonWalletHex } from '../build/jetton-wallet.compiled.json';
+import { hex as jettonMinterHex } from '../../build/jetton-minter.compiled.json';
+import { hex as jettonWalletHex } from '../../build/jetton-wallet.compiled.json';
 // import { hex as testMinterHex } from '../../build/test-minter.compiled.json';
 // Code cells from build output
 export const jettonMinterCodeCell = Cell.fromBoc(Buffer.from(jettonMinterHex, 'hex'))[0];
