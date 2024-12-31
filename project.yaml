@@ -10,7 +10,7 @@ jetton-minter:
         - contracts/imports/workchain.fc
     tests:
         - tests/toncli/func_tests/minter-tests.fc
-        # - tests/toncli/func_tests/minter-tests-int.fc
+#         - tests/toncli/func_tests/minter-tests-int.fc
 # jetton-wallet:
 #     data: tests/toncli/fift_helpers//wallet_data.fif
 #     func:
